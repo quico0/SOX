@@ -109,13 +109,13 @@ DSHELL=/bin/bash
 ## Crear usuari de prova
 
 ```bash
-sudo adduser provaXX
+sudo adduser prova04
 ```
 
 Iniciar sessió:
 
 ```bash
-su - provaXX
+su - prova04
 ```
 
 Verificar:
@@ -128,15 +128,7 @@ ls
 ll
 ```
 
-S'ha de comprovar que existeixen:
-
-- BENVINGUDA.txt
-- Documents
-- Alias ll
-
-## Captura
-
-📸 Comprovació de la configuració de l'usuari.
+![cap6]()
 
 ---
 
@@ -151,16 +143,10 @@ exit
 Eliminar:
 
 ```bash
-sudo deluser -r provaXX
+sudo deluser prova04
 ```
 
-## Captura
-
-📸 Eliminació de l'usuari.
-
-## Conclusió
-
-La configuració definida a `/etc/skel` es copia correctament als nous usuaris.
+![cap7]()
 
 ---
 
@@ -183,8 +169,6 @@ Nom complet:
 ```text
 Pau Garcia
 ```
-
-Assignar grup principal:
 
 ```bash
 sudo usermod -g devs pau_dev
