@@ -170,13 +170,14 @@ Nom complet:
 Pau Garcia
 ```
 
+![cap8]()
+
+
 ```bash
 sudo usermod -g devs pau_dev
 ```
 
-## Captura
-
-📸 Creació de pau_dev.
+![cap9]()
 
 ---
 
