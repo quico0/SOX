@@ -28,7 +28,7 @@ sysadmin:x:1002:
 auditor:x:1003:
 ```
 
-![cap1]()
+![cap1](/media/NF1.UD3/1.png)
 
 ---
 
@@ -52,7 +52,7 @@ Normes d'ús:
 - Utilitzar els recursos de forma responsable.
 ```
 
-![cap2]()
+![cap2](/media/NF1.UD3/2.png)
 
 ---
 
@@ -68,7 +68,7 @@ sudo mkdir /etc/skel/Documents
 ls -la /etc/skel
 ```
 
-![cap3]()
+![cap3](/media/NF1.UD3/3.png)
 
 ---
 
@@ -86,7 +86,7 @@ Afegir al final:
 alias ll='ls -la --color=auto'
 ```
 
-![cap4]()
+![cap4](/media/NF1.UD3/4.png)
 
 ---
 
@@ -102,7 +102,7 @@ Verificar que existeix:
 DSHELL=/bin/bash
 ```
 
-![cap5]()
+![cap5](/media/NF1.UD3/5.png)
 
 ---
 
@@ -128,7 +128,7 @@ ls
 ll
 ```
 
-![cap6]()
+![cap6](/media/NF1.UD3/6.png)
 
 ---
 
@@ -146,7 +146,7 @@ Eliminar:
 sudo deluser prova04
 ```
 
-![cap7]()
+![cap7](/media/NF1.UD3/7.png)
 
 ---
 
@@ -170,14 +170,14 @@ Nom complet:
 Pau Garcia
 ```
 
-![cap8]()
+![cap8](/media/NF1.UD3/8.png)
 
 
 ```bash
 sudo usermod -g devs pau_dev
 ```
 
-![cap9]()
+![cap9](/media/NF1.UD3/9.png)
 
 ---
 
@@ -199,9 +199,7 @@ Assignar grup principal:
 sudo usermod -g devs laura_dev
 ```
 
-## Captura
-
-📸 Creació de laura_dev.
+![cap10](/media/NF1.UD3/10.png)
 
 ---
 
@@ -211,9 +209,7 @@ sudo usermod -g devs laura_dev
 sudo useradd -m -d /home/marc_sys -s /bin/bash -g sysadmin -G devs -c "Marc Soler" marc_sys
 ```
 
-## Captura
-
-📸 Creació de marc_sys.
+![cap11](/media/NF1.UD3/11.png)
 
 ---
 
@@ -223,9 +219,7 @@ sudo useradd -m -d /home/marc_sys -s /bin/bash -g sysadmin -G devs -c "Marc Sole
 sudo useradd -m -d /home/auditor -s /bin/bash -g auditor -c "Usuari Auditor" auditor
 ```
 
-## Captura
-
-📸 Creació d'auditor.
+![cap12](/media/NF1.UD3/12.png)
 
 ---
 
@@ -244,9 +238,7 @@ Contrasenya:
 Canviam2026!
 ```
 
-## Captura
-
-📸 Assignació de contrasenyes.
+![cap13](/media/NF1.UD3/13.png)
 
 ---
 
@@ -262,9 +254,7 @@ Verificació:
 sudo chage -l pau_dev
 ```
 
-## Captura
-
-📸 Configuració de chage.
+![cap14](/media/NF1.UD3/14.png)
 
 ---
 
@@ -280,9 +270,7 @@ Resultat esperat:
 You are required to change your password immediately.
 ```
 
-## Captura
-
-📸 Obligació de canvi de contrasenya.
+![cap15](/media/NF1.UD3/15.png)
 
 ## Conclusió
 
@@ -306,9 +294,7 @@ gid=1002(sysadmin)
 groups=1002(sysadmin),1001(devs)
 ```
 
-## Captura
-
-📸 Sortida de la comanda id.
+![cap16](/media/NF1.UD3/16.png)
 
 ---
 
@@ -333,9 +319,7 @@ pau_dev:x:1001:1001:Pau Garcia:/home/pau_dev:/bin/bash
 - Directori personal
 - Shell
 
-## Captura
-
-📸 Entrada de passwd.
+![cap17](/media/NF1.UD3/17.png)
 
 ---
 
@@ -358,9 +342,7 @@ pau_dev:$y$j9T$xxxxxxxxxxxxxxxxxx
 - Bloquejos
 - Política de contrasenyes
 
-## Captura
-
-📸 Entrada de shadow.
+![cap18](/media/NF1.UD3/18.png)
 
 ---
 
@@ -380,9 +362,7 @@ Exemple:
 
 Només root i el grup shadow poden accedir al fitxer perquè conté informació sensible sobre les contrasenyes dels usuaris.
 
-## Captura
-
-📸 Permisos del fitxer.
+![cap19](/media/NF1.UD3/19.png)
 
 ---
 
@@ -408,9 +388,7 @@ grep SKEL /etc/adduser.conf
 
 Quan es crea un nou usuari, el contingut de `/etc/skel` es copia automàticament al seu directori personal.
 
-## Captura
-
-📸 Contingut de `/etc/skel`.
+![cap20](/media/NF1.UD3/20.png)
 
 ## Conclusió
 
@@ -426,9 +404,7 @@ El directori plantilla permet definir configuracions comunes per a tots els usua
 sudo passwd -l pau_dev
 ```
 
-## Captura
-
-📸 Bloqueig del compte.
+![cap21](/media/NF1.UD3/21.png)
 
 ---
 
@@ -448,9 +424,7 @@ pau_dev:!$y$...
 
 El símbol `!` davant del hash indica que el compte està bloquejat.
 
-## Captura
-
-📸 Entrada bloquejada al fitxer shadow.
+![cap22](/media/NF1.UD3/22.png)
 
 ---
 
@@ -466,9 +440,7 @@ Comprovació:
 sudo grep pau_dev /etc/shadow
 ```
 
-## Captura
-
-📸 Compte desbloquejat.
+![cap23](/media/NF1.UD3/23.png)
 
 ---
 
@@ -486,9 +458,7 @@ grep auditor /etc/passwd
 
 No hauria d'aparèixer cap resultat.
 
-## Captura
-
-📸 Eliminació de l'usuari auditor.
+![cap24](/media/NF1.UD3/24.png)
 
 ## Conclusió
 
@@ -512,9 +482,7 @@ Instal·lar Fish:
 sudo apt install fish -y
 ```
 
-## Captura
-
-📸 Instal·lació de fish.
+![cap25](/media/NF1.UD3/25.png)
 
 ---
 
@@ -524,15 +492,13 @@ sudo apt install fish -y
 which fish
 ```
 
-Resultat habitual:
+Resultat:
 
 ```text
 /usr/bin/fish
 ```
 
-## Captura
-
-📸 Ruta de fish.
+![cap26](/media/NF1.UD3/26.png)
 
 ---
 
@@ -542,9 +508,7 @@ Resultat habitual:
 sudo usermod -s /usr/bin/fish laura_dev
 ```
 
-## Captura
-
-📸 Modificació de la shell.
+![cap27](/media/NF1.UD3/27.png)
 
 ---
 
@@ -554,15 +518,7 @@ sudo usermod -s /usr/bin/fish laura_dev
 grep laura_dev /etc/passwd
 ```
 
-Exemple:
-
-```text
-laura_dev:x:1002:1001:Laura Martí:/home/laura_dev:/usr/bin/fish
-```
-
-## Captura
-
-📸 Verificació de passwd.
+![cap28](/media/NF1.UD3/28.png)
 
 ---
 
@@ -584,26 +540,9 @@ Resultat:
 /usr/bin/fish
 ```
 
-També es pot comprovar:
-
-```bash
-fish --version
-```
-
-## Captura
-
-📸 Sessió iniciada amb fish.
+![cap29](/media/NF1.UD3/29.png)
 
 ## Conclusió
 
 L'usuari laura_dev utilitza correctament la shell Fish.
 
----
-
-# Conclusions Finals
-
-Durant aquesta pràctica s'ha configurat l'estructura d'usuaris i grups del servidor Ubuntu Server de TechData S.L.
-
-S'han creat grups i usuaris, s'han configurat perfils per defecte mitjançant `/etc/skel`, s'han analitzat els fitxers `/etc/passwd`, `/etc/group` i `/etc/shadow`, s'han realitzat tasques de manteniment de comptes i s'ha personalitzat l'entorn de treball mitjançant Fish Shell.
-
-Aquesta activitat ha permès conèixer els principals mecanismes de gestió d'usuaris, grups i seguretat bàsica en sistemes Linux.
