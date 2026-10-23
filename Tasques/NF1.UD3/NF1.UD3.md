@@ -28,7 +28,7 @@ sysadmin:x:1002:
 auditor:x:1003:
 ```
 
-![cap1](/media/NF1.UD3/1.png)
+![cap1](/Tasques/NF1.UD3/img/1.png)
 
 ---
 
@@ -52,7 +52,8 @@ Normes d'ús:
 - Utilitzar els recursos de forma responsable.
 ```
 
-![cap2](/media/NF1.UD3/2.png)
+![cap2](/Tasques/NF1.UD3/img/2.png)
+
 
 ---
 
@@ -68,8 +69,7 @@ sudo mkdir /etc/skel/Documents
 ls -la /etc/skel
 ```
 
-![cap3](/media/NF1.UD3/3.png)
-
+![cap3](/Tasques/NF1.UD3/img/3.png)
 ---
 
 ## Configurar l'alias ll
@@ -86,7 +86,7 @@ Afegir al final:
 alias ll='ls -la --color=auto'
 ```
 
-![cap4](/media/NF1.UD3/4.png)
+![cap4](/Tasques/NF1.UD3/img/4.png)
 
 ---
 
@@ -102,7 +102,7 @@ Verificar que existeix:
 DSHELL=/bin/bash
 ```
 
-![cap5](/media/NF1.UD3/5.png)
+![cap5](/Tasques/NF1.UD3/img/5.png)
 
 ---
 
@@ -128,7 +128,7 @@ ls
 ll
 ```
 
-![cap6](/media/NF1.UD3/6.png)
+![cap6](/Tasques/NF1.UD3/img/6.png)
 
 ---
 
@@ -146,7 +146,7 @@ Eliminar:
 sudo deluser prova04
 ```
 
-![cap7](/media/NF1.UD3/7.png)
+![cap7](/Tasques/NF1.UD3/img/7.png)
 
 ---
 
@@ -170,15 +170,14 @@ Nom complet:
 Pau Garcia
 ```
 
-![cap8](/media/NF1.UD3/8.png)
+![cap8](/Tasques/NF1.UD3/img/8.png)
 
 
 ```bash
 sudo usermod -g devs pau_dev
 ```
 
-![cap9](/media/NF1.UD3/9.png)
-
+![cap9](/Tasques/NF1.UD3/img/9.png)
 ---
 
 ## Crear laura_dev
@@ -199,7 +198,7 @@ Assignar grup principal:
 sudo usermod -g devs laura_dev
 ```
 
-![cap10](/media/NF1.UD3/10.png)
+![cap10](/Tasques/NF1.UD3/img/10.png)
 
 ---
 
@@ -209,7 +208,7 @@ sudo usermod -g devs laura_dev
 sudo useradd -m -d /home/marc_sys -s /bin/bash -g sysadmin -G devs -c "Marc Soler" marc_sys
 ```
 
-![cap11](/media/NF1.UD3/11.png)
+![cap11](/Tasques/NF1.UD3/img/11.png)
 
 ---
 
@@ -219,7 +218,7 @@ sudo useradd -m -d /home/marc_sys -s /bin/bash -g sysadmin -G devs -c "Marc Sole
 sudo useradd -m -d /home/auditor -s /bin/bash -g auditor -c "Usuari Auditor" auditor
 ```
 
-![cap12](/media/NF1.UD3/12.png)
+![cap12](/Tasques/NF1.UD3/img/12.png)
 
 ---
 
@@ -238,7 +237,7 @@ Contrasenya:
 Canviam2026!
 ```
 
-![cap13](/media/NF1.UD3/13.png)
+![cap13](/Tasques/NF1.UD3/img/13.png)
 
 ---
 
@@ -254,7 +253,7 @@ Verificació:
 sudo chage -l pau_dev
 ```
 
-![cap14](/media/NF1.UD3/14.png)
+![cap14](/Tasques/NF1.UD3/img/14.png)
 
 ---
 
@@ -270,7 +269,7 @@ Resultat esperat:
 You are required to change your password immediately.
 ```
 
-![cap15](/media/NF1.UD3/15.png)
+![cap15](/Tasques/NF1.UD3/img/15.png)
 
 ## Conclusió
 
@@ -294,7 +293,7 @@ gid=1002(sysadmin)
 groups=1002(sysadmin),1001(devs)
 ```
 
-![cap16](/media/NF1.UD3/16.png)
+![cap16](/Tasques/NF1.UD3/img/16.png)
 
 ---
 
@@ -319,7 +318,7 @@ pau_dev:x:1001:1001:Pau Garcia:/home/pau_dev:/bin/bash
 - Directori personal
 - Shell
 
-![cap17](/media/NF1.UD3/17.png)
+![cap17](/Tasques/NF1.UD3/img/17.png)
 
 ---
 
@@ -342,7 +341,7 @@ pau_dev:$y$j9T$xxxxxxxxxxxxxxxxxx
 - Bloquejos
 - Política de contrasenyes
 
-![cap18](/media/NF1.UD3/18.png)
+![cap18](/Tasques/NF1.UD3/img/18.png)
 
 ---
 
@@ -362,7 +361,7 @@ Exemple:
 
 Només root i el grup shadow poden accedir al fitxer perquè conté informació sensible sobre les contrasenyes dels usuaris.
 
-![cap19](/media/NF1.UD3/19.png)
+![cap19](/Tasques/NF1.UD3/img/19.png)
 
 ---
 
@@ -388,7 +387,7 @@ grep SKEL /etc/adduser.conf
 
 Quan es crea un nou usuari, el contingut de `/etc/skel` es copia automàticament al seu directori personal.
 
-![cap20](/media/NF1.UD3/20.png)
+![cap20](/Tasques/NF1.UD3/img/20.png)
 
 ## Conclusió
 
@@ -404,7 +403,7 @@ El directori plantilla permet definir configuracions comunes per a tots els usua
 sudo passwd -l pau_dev
 ```
 
-![cap21](/media/NF1.UD3/21.png)
+![cap21](/Tasques/NF1.UD3/img/21.png)
 
 ---
 
@@ -424,7 +423,7 @@ pau_dev:!$y$...
 
 El símbol `!` davant del hash indica que el compte està bloquejat.
 
-![cap22](/media/NF1.UD3/22.png)
+![cap22](/Tasques/NF1.UD3/img/22.png)
 
 ---
 
@@ -440,7 +439,7 @@ Comprovació:
 sudo grep pau_dev /etc/shadow
 ```
 
-![cap23](/media/NF1.UD3/23.png)
+![cap23](/Tasques/NF1.UD3/img/23.png)
 
 ---
 
@@ -458,7 +457,9 @@ grep auditor /etc/passwd
 
 No hauria d'aparèixer cap resultat.
 
-![cap24](/media/NF1.UD3/24.png)
+![cap24](/Tasques/NF1.UD3/img/24.png)
+
+---
 
 ## Conclusió
 
@@ -482,7 +483,8 @@ Instal·lar Fish:
 sudo apt install fish -y
 ```
 
-![cap25](/media/NF1.UD3/25.png)
+![cap25](/Tasques/NF1.UD3/img/25.png)
+
 
 ---
 
@@ -498,7 +500,8 @@ Resultat:
 /usr/bin/fish
 ```
 
-![cap26](/media/NF1.UD3/26.png)
+![cap26](/Tasques/NF1.UD3/img/26.png)
+
 
 ---
 
@@ -508,7 +511,7 @@ Resultat:
 sudo usermod -s /usr/bin/fish laura_dev
 ```
 
-![cap27](/media/NF1.UD3/27.png)
+![cap27](/Tasques/NF1.UD3/img/27.png)
 
 ---
 
@@ -518,7 +521,7 @@ sudo usermod -s /usr/bin/fish laura_dev
 grep laura_dev /etc/passwd
 ```
 
-![cap28](/media/NF1.UD3/28.png)
+![cap28](/Tasques/NF1.UD3/img/28.png)
 
 ---
 
@@ -540,9 +543,5 @@ Resultat:
 /usr/bin/fish
 ```
 
-![cap29](/media/NF1.UD3/29.png)
-
-## Conclusió
-
-L'usuari laura_dev utilitza correctament la shell Fish.
+![cap29](/Tasques/NF1.UD3/img/29.png)
 

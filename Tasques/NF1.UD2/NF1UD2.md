@@ -21,7 +21,7 @@ ip a
 
 He executat la comanda `ip a` per visualitzar totes les interfícies de xarxa disponibles. He identificat la segona adreça IP, corresponent a la interfície Host-Only, que serà la utilitzada per connectar-me remotament des del sistema Windows.
 
-![Imatge Ip Servidor](/media/1.png)
+![Imatge Ip Servidor](/Tasques/NF1.UD2/img/1.png)
 
 ---
 
@@ -37,7 +37,7 @@ ssh usuari@adreca_ip
 
 Des del Terminal de Windows he establert una connexió remota amb el servidor Ubuntu utilitzant el protocol SSH.
 
-![Conexio ssh](/media/2.png)
+![Conexio ssh](/Tasques/NF1.UD2/img/2.png)
 
 ---
 
@@ -56,8 +56,7 @@ sudo apt update
 
 He actualitzat la informació dels repositoris per comprovar si existeixen paquets pendents d'actualitzar.
 
-![Comprovacio Actualitzacio](/media/3.png)
-
+![Comprovacio Actualitzacio](/Tasques/NF1.UD2/img/3.png)
 ---
 
 
@@ -74,7 +73,7 @@ S'han actualitzat tots els paquets instal·lats a les versions més recents disp
 
 ### Captura
 
-![Actualitzacio](/media/4.png)
+![Actualitzacio](/Tasques/NF1.UD2/img/4.png)
 
 ---
 
@@ -90,7 +89,7 @@ hostnamectl
 
 ### Captura
 
-![Canvi Nom](/media/5.png)
+![Canvi Nom](/Tasques/NF1.UD2/img/5.png)
 
 ---
 
@@ -108,7 +107,7 @@ He canviat el nom permanent de l'equip utilitzant les meves inicials.
 
 ### Captura
 
-![Canvi Nom](/media/6.png)
+![Canvi Nom](/Tasques/NF1.UD2/img/6.png)
 
 ---
 
@@ -126,7 +125,7 @@ He afegit una descripció identificativa per al servidor.
 
 ### Captura
 
-![Canvi Nom]/media/7.png)
+![Canvi Nom](/Tasques/NF1.UD2/img/7.png)
 
 ---
 
@@ -140,7 +139,7 @@ hostnamectl
 
 ### Captura
 
-![Canvi Nom](/media/8.png)
+![Canvi Nom](/Tasques/NF1.UD2/img/8.png)
 
 ---
 
@@ -158,8 +157,7 @@ La comanda `hostname` només mostra el nom curt del servidor. En canvi, `hostnam
 
 ### Captura
 
-media/hostname.png
-
+![Modificar Fitxer](/Tasques/NF1.UD2/img/9.png)
 ---
 
 ## 3.6 Modificació del fitxer hosts
@@ -183,7 +181,7 @@ He actualitzat el fitxer perquè el servidor resolgui correctament el nou nom co
 
 ### Captura
 
-![Modificar Fitxer](/media/9.png)
+![Modificar Fitxer](/Tasques/NF1.UD2/img/10.png)
 
 ---
 
@@ -201,7 +199,7 @@ La comanda mostra el nom complet de domini (FQDN), mentre que `hostname` només 
 
 ### Captura
 
-![Hostname complet](/media/10.png)
+![Hostname complet](/Tasques/NF1.UD2/img/11.png)
 
 ---
 
@@ -221,7 +219,7 @@ He canviat la contrasenya de l'usuari administrador per una de nova més segura.
 
 ### Captura
 
-![Canvi de contrasenya](/media/11.png)
+![Canvi de contrasenya](/Tasques/NF1.UD2/img/12.png)
 
 ---
 
@@ -237,7 +235,7 @@ apt search btop
 
 ### Captura
 
-![Gestió de la instal·lació d'aplicacions](//media/12.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/13.png)
 
 ---
 
@@ -255,7 +253,7 @@ He consultat informació sobre el paquet, com la versió disponible, dependènci
 
 ### Captura
 
-![Gestió de la instal·lació d'aplicacions](/media/13.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/14.png)
 
 ---
 
@@ -267,10 +265,6 @@ He consultat informació sobre el paquet, com la versió disponible, dependènci
 sudo apt install btop -y
 ```
 
-### Captura
-
-![Gestió de la instal·lació d'aplicacions](/media/14.png)
-
 ### Verificació
 
 ```bash
@@ -279,7 +273,7 @@ btop
 
 ### Captura
 
-![Gestió de la instal·lació d'aplicacions](/media/15.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/15.png)
 
 ---
 
@@ -303,9 +297,9 @@ lsd
 
 ### Captura
 
-![Gestió de la instal·lació d'aplicacions](/media/16lsd.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/16lsd.png)
 
-![Gestió de la instal·lació d'aplicacions](/media/17lsd.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/17lsd.png)
 
 ---
 
@@ -319,7 +313,7 @@ sudo apt install apache2 -y
 
 ### Captura
 
-![Gestió de la instal·lació d'aplicacions](/media/18.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/18.png)
 
 ---
 
@@ -331,7 +325,7 @@ systemctl status apache2
 
 ### Captura
 
-![Gestió de la instal·lació d'aplicacions](/media/19.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/19.png)
 
 ---
 
@@ -345,7 +339,7 @@ sudo apt purge apache2 -y
 
 ### Captura
 
-![Gestió de la instal·lació d'aplicacions](/media/20.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/20.png)
 
 ---
 
@@ -359,7 +353,7 @@ sudo snap install micro --classic
 
 ### Captura
 
-![Gestió de la instal·lació d'aplicacions](/media/21.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/21.png)
 
 ---
 
@@ -371,7 +365,7 @@ snap list
 
 ### Captura
 
-![Gestió de la instal·lació d'aplicacions](/media/22.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/22.png)
 
 ## 5.8 Actualització de Micro
 
@@ -383,7 +377,7 @@ sudo snap refresh micro
 
 ### Captura
 
-![Gestió de la instal·lació d'aplicacions](/media/23.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/23.png)
 
 ---
 
@@ -397,7 +391,7 @@ sudo snap remove micro
 
 ### Captura
 
-![Gestió de la instal·lació d'aplicacions](/media/24.png)
+![Gestió de la instal·lació d'aplicacions](/Tasques/NF1.UD2/img/24.png)
 
 ---
 
@@ -413,7 +407,7 @@ timedatectl
 
 ### Captura
 
-![Configuració d'hora, teclat i idioma](/media/25.png)
+![Configuració d'hora, teclat i idioma](/Tasques/NF1.UD2/img/25.png)
 
 ---
 
@@ -431,8 +425,7 @@ He configurat el servidor perquè utilitzi la zona horària d'Espanya.
 
 ### Captura
 
-![Configuració d'hora, teclat i idioma](/media/26.png)
-
+![Configuració d'hora, teclat i idioma](/Tasques/NF1.UD2/img/26.png)
 ---
 
 ## 6.3 Configuració del teclat
@@ -445,7 +438,7 @@ sudo dpkg-reconfigure keyboard-configuration
 
 ### Captura
 
-![Configuració d'hora, teclat i idioma](/media/27.png)
+![Configuració d'hora, teclat i idioma](/Tasques/NF1.UD2/img/27.png)
 
 ---
 
@@ -463,7 +456,7 @@ sudo dpkg-reconfigure locales
 
 ### Captura
 
-![Configuració d'hora, teclat i idioma](/media/28.png)
+![Configuració d'hora, teclat i idioma](/Tasques/NF1.UD2/img/28.png)
 
 ---
 
@@ -479,7 +472,7 @@ find /etc -type f -name "*.yaml"
 
 ### Captura
 
-![Explorant arxius de configuració](/media/29.png)
+![Explorant arxius de configuració](/Tasques/NF1.UD2/img/29.png)
 
 ---
 
@@ -493,7 +486,7 @@ find /etc -type d -name "*ssh*"
 
 ### Captura
 
-![Explorant arxius de configuració](/media/30.png)
+![Explorant arxius de configuració](/Tasques/NF1.UD2/img/30.png)
 
 ---
 
@@ -507,7 +500,7 @@ find /var/log *type f -size +10M
 
 ### Captura*
 
-![Explorant arxius de configuració](/media/31.png)
+![Explorant arxius de configuració](/Tasques/NF1.UD2/img/31.png)
 
 ---
 
@@ -521,8 +514,7 @@ grep -vE '^\s*#|^\s*$' /etc/ssh/sshd_config
 
 ### Captura
 
-![Explorant arxius de configuració](/media/32.png)
-
+![Explorant arxius de configuració](/Tasques/NF1.UD2/img/32.png)
 ---
 
 # 8. Configuració de xarxa
@@ -535,7 +527,7 @@ He modificat la configuració de VirtualBox canviant la xarxa NAT per Adaptador 
 
 ### Captura
 
-![Configuració de xarxa](/media/33.png)
+![Configuració de xarxa](/Tasques/NF1.UD2/img/33.png)
 
 ---
 
@@ -549,7 +541,7 @@ sudo nano /etc/netplan/00-installer-config.yaml
 
 ### Captura
 
-![Configuració de xarxa](/media/34.png)
+![Configuració de xarxa](/Tasques/NF1.UD2/img/34.png)
 
 ---
 
@@ -563,7 +555,7 @@ sudo netplan apply
 
 ### Captura
 
-![Configuració de xarxa](/media/35.png)
+![Configuració de xarxa](/Tasques/NF1.UD2/img/35.png)
 
 ---
 
@@ -577,7 +569,7 @@ ip a
 
 ### Captura
 
-![Configuració de xarxa](/media/36.png)
+![Configuració de xarxa](/Tasques/NF1.UD2/img/36.png)
 
 ---
 
@@ -591,7 +583,7 @@ ping 8.8.8.8
 
 ### Captura
 
-![Configuració de xarxa](/media/37.png)
+![Configuració de xarxa](/Tasques/NF1.UD2/img/37.png)
 
 ---
 
@@ -607,7 +599,7 @@ systemctl status ssh
 
 ### Captura
 
-![Gestió de serveis](/media/38.png)
+![Gestió de serveis](/Tasques/NF1.UD2/img/38.png)
 
 ---
 
@@ -631,7 +623,7 @@ sudo systemctl start ssh
 
 ### Captura
 
-![Gestió de serveis](/media/39.png)
+![Gestió de serveis](/Tasques/NF1.UD2/img/39.png)
 
 ---
 
@@ -645,5 +637,5 @@ He exportat la màquina virtual des de VirtualBox utilitzant l'opció **Fitxer �
 
 ### Captura
 
-![Exportació a OVA](/media/40.png)
+![Exportació a OVA](/Tasques/NF1.UD2/img/40.png)
 
