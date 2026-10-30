@@ -146,3 +146,114 @@ Export list for localhost:
 
 ### Fase 3: L'Exportació d'Administració
 
+#### Prova 1 l'error comu
+
+El primer es editar l'arxiu /etc/exports per començar amb la exportacio 
+
+```bash
+sudo nano /etc/exports
+```
+
+Ara afegim aquesta linia a l'arxiu
+
+```text
+/srv/nfs/admin_tools *(rw,sync,no_subtree_check)
+```
+
+![Canvi Linia](/Tasques/NF1.UD4/img/14.png)
+
+Ara hem de restaurar el server de nfs i de exportacions perque funcioni
+
+```bash
+sudo exportfs -a 
+sudo systemctl restart nfs-kernel-server
+```
+
+![Restaurar servei nfs](/Tasques/NF1.UD4/img/15.png)
+
+Ara proverem de fer l'exportacio al clinet (primer hem hagut d'instal·lar el sarve nfs-common a el clinet)
+
+Primer crearem el punt de muntatge local
+
+```bash
+sudo mkdir -p /mnt/admin_tools
+```
+
+![Creacio muntatge local](/Tasques/NF1.UD4/img/16.png)
+
+Ara muntem la carpeta compratida al servidor desde el client (10.0.2.7 es la ip de l'adaptador 'xarxa NAT' del servidor)
+
+```bash
+sudo mount -t nfs 10.0.2.7:/srv/nfs/admin_tools /mnt/admin_tools
+```
+
+![Muntar carpeta compartida prova 1](/Tasques/NF1.UD4/img/17.png)
+
+I ara hem de fer aixo 
+
+```bash
+sudo touch /mnt/admin_tools/prova1.txt
+```
+
+Pero el que passa es que no ens deixa i aquest es un dels errors mes comuns a l'hora de fer carpetes compartides amb NFS.
+
+![Error prova 1](/Tasques/NF1.UD4/img/18.png)
+
+
+---
+
+#### Prova 2 solucio
+
+D'acord ara començem desde cero.
+
+El Primer es anar a l'ubuntu server i hem de tornar a editar l'arxiu d'exportacions.
+
+```bash
+sudo nano /etc/exports
+```
+
+I canviem la linia
+
+```text
+/srv/nfs/admin_tools *(rw,sync,no_subtree_check)
+```
+
+Per
+
+```text 
+/srv/nfs/admin_tools *(rw,sync,no_subtree_check,no_root_squash)
+```
+
+![Edicio arxiu exports prova 2](/Tasques/NF1.UD4/img/19.png)
+
+Ara re-exportem el recurs i actualiazem el servei
+
+```bash
+sudo exportfs -a 
+sudo systemctl restart nfs-kernel-server
+```
+
+![re-exportacio de el recurs i actualitzacio del servei](/Tasques/NF1.UD4/img/20.png)
+
+Ara pasarem a traballa a la maquina client (zorin)
+
+Ara el primer es desmontar la carpeta de la prova 1 amb 
+
+```bash
+sudo umount /mnt/admin_tools
+```
+
+Ara Montarem la carpeta amb la comanda
+
+```bash
+sudo mount -t nfs IP_DEL_SERVIDOR:/srv/nfs/admin_tools /mnt/admin_tools
+```
+
+![Muntem carpeta prova 2](/Tasques/NF1.UD4/img/21.png)
+
+
+Ara toca crear el fitxer que li direm prova2.txt
+
+
+
+
