@@ -1,259 +1,195 @@
-# NF1.UD4
+# Guia de Tasca: Configuració d'un Servidor i Client NFS
 
-## Taula de Continguts
+Aquesta guia descriu els passos necessaris per configurar un entorn de compartició de fitxers mitjançant el protocol **NFS (Network File System)**. Aprendrem a preparar un servidor (Ubuntu Server) i un client (Zorin OS) per compartir una carpeta de manera segura i coherent.
 
-[Fase 1. Preparació de l'entorn](#fase-1-preparació-de-lentorn)
-
-[Fase 2: Preparació del servidor](#fase-2-preparació-del-servidor)
-
-[Fase 3: L'Exportació d'Administració](#fase-3-lexportació-dadministració)
 
 ---
 
-### Fase 1. Preparació de l'entorn
+## Taula de continguts
 
-Hem de tenir una maquina clinet (Zorin os) i el servidor ubuntu els dos amb xarxa nat tambe conectem el servidor amb el adaptador nomes amfitrió.
+[Preparació de l'entorn](#preparació-de-lentorn)
 
-Aqui hi ha les captures amb les configuracions del ubutnu servir i xorin
-
-![Captura Ubuntu](/Tasques/NF1.UD4/img/1.png)
-
-![Captura Zorin](/Tasques/NF1.UD4/img/2.png)
 
 ---
 
-### Fase 2: Preparació del servidor
+##  Preparació de l'entorn
 
+Per realitzar aquesta pràctica necessitarem dues màquines virtuals connectades per la mateixa xarxa:
 
-Primer crearem els grups devs i admins
+*   **Servidor NFS:** Ubuntu Server
+*   **Client NFS:** Zorin OS
 
-```bash
-sudo groupadd devs
-sudo groupadd admins
-```
+---
 
-![Creacio Grups](/Tasques/NF1.UD4/img/3.png)
+##  Pas 1: Instal·lació dels paquets necessaris
 
-Ara crearem el usuari dev01 dintre del grup devs
+Abans de començar, assegureu-vos que les màquines tenen accés a Internet i actualitzeu els repositoris.
 
-```bash
-sudo useradd -m -g devs dev01
-```
+### 1.1. Al Servidor (Ubuntu Server)
 
-![Creacio dev01](/Tasques/NF1.UD4/img/4.png)
-
-Ara el usuari admin01 dins del grup admins
-
-```bash
-sudo useradd -m -g admins admin01
-```
-
-![Creacio admin01](/Tasques/NF1.UD4/img/5.png)
-
-Ara crearem els directoris /srv/nfs/dev_projects i /srv/nfs/admin_tools
-
-```bash
-sudo mkdir -p /srv/nfs/dev_projects /srv/nfs/admin_tools
-``` 
-
-![Creacio Directoris](/Tasques/NF1.UD4/img/6.png)
-
-Ara hem de Configurar els permisos dels grups de devs i admins que els dos han de ser root i que els devs tinguin el control sobre els projectes (directori) i a els admins a les einie (directori).
-
-Propietari root i grup devs per a projectes de desenvolupament:
-
-```bash
-sudo chown root:devs /srv/nfs/dev_projects
-```
-
-![Configuracio devs](/Tasques/NF1.UD4/img/7.png)
-
-Propietari root i grup admins per a eines d'administració:
-
-```bash
-sudo chown root:admins /srv/nfs/admin_tools
-```
-
-![Configuracio admins](/Tasques/NF1.UD4/img/8.png)
-
-Ara utilitzarem la comanda chmod per configurar els permisios de cada prup i per els directoris per configurar el control total
-
-De devs:
-
-```bash
-sudo chmod 770 /srv/nfs/dev_projects
-```
-
-![Control devs](/Tasques/NF1.UD4/img/9.png)
-
-De Admins:
-
-```bash
-sudo chmod 770 /srv/nfs/admin_tools
-```
-
-![Control Admins](/Tasques/NF1.UD4/img/10.png)
-
-Ara instal·larem els paquets necesaris per el servei NFS
+Instal·lem el paquet que proporciona el dimoni del servidor NFS:
 
 ```bash
 sudo apt update
 sudo apt install nfs-kernel-server -y
 ```
 
-![Paquets NFS](/Tasques/NF1.UD4/img/11.png)
+### 1.2. Al Client (Zorin OS)
 
-Ara la Configuracio de les exportacions que haurem d'editar l'arxiu /etc/exports
-
-```bash
- sudo nano /etc/exports
-```
-
-I posem aixo al final de l'arxiu per configurar les exportacions (a la ip hem de posar el rang de ips de el adaptadors xarxa NAT)
-
-```text
-/srv/nfs/dev_projects  10.0.2.0/24(rw,sync,no_subtree_check,insecure)
-/srv/nfs/admin_tools   10.0.2.0/24(rw,sync,no_subtree_check,insecure)
-```
-
-![Configuracions Exportacions](/Tasques/NF1.UD4/img/12.png)
-
-Ara farem les comprovacions per saber si estan ben configurades 
-
-El primer es reiniciar el servei NSF
+Instal·lem les utilitats comunes per poder muntar recursos NFS:
 
 ```bash
-sudo systemctl restart nfs-kernel-server
+sudo apt update
+sudo apt install nfs-common -y
 ```
-
-I despres fem la comprovacio
-
-```bash
-sudo showmount -e
-```
-
-El resultat hauria de ser:
-
-```text
-Export list for localhost:
-/srv/nfs/dev_projects 10.0.2.0/24
-/srv/nfs/admin_tools  10.0.2.0/24
-```
-
-![Comprovacio Exportacions](/Tasques/NF1.UD4/img/13.png)
 
 ---
 
-### Fase 3: L'Exportació d'Administració
+##  Pas 2: Configuració del Servidor NFS
 
-#### Prova 1 l'error comu
+En aquest pas prepararem el recurs que volem compartir, assignant els permisos adequats i configurant el servei per exportar-lo a la xarxa.
 
-El primer es editar l'arxiu /etc/exports per començar amb la exportacio 
+### 2.1. Creació de l'usuari, grup i carpeta compartida
+
+Crearem un usuari i un grup específics per a la pràctica, i els assignarem com a propietaris de la carpeta que compartirem.
+
+```bash
+# Creem el grup i l'usuari que serà propietari del recurs (UID i GID 1100)
+sudo groupadd -g 1100 grup_smx
+sudo useradd -u 1100 -m -g grup_smx usuari_smx
+
+# Crear una carpeta per compartir
+sudo mkdir -p /srv/nfs/compartit
+
+# Canviar propietari i grup de la carpeta
+sudo chown usuari_smx:grup_smx /srv/nfs/compartit
+
+# Establir permisos d'accés a la carpeta (rwx per al propietari, rx per al grup)
+sudo chmod 750 /srv/nfs/compartit
+```
+
+### 2.2. Configuració de l'exportació (`/etc/exports`)
+
+El fitxer `/etc/exports` defineix quines carpetes es comparteixen, amb qui i amb quins permisos.
+
+Editem el fitxer:
 
 ```bash
 sudo nano /etc/exports
 ```
 
-Ara afegim aquesta linia a l'arxiu
+Afegim la següent línia al final del fitxer (permetem accés a tothom `*` amb lectura/escriptura i sincronització de dades):
 
 ```text
-/srv/nfs/admin_tools *(rw,sync,no_subtree_check)
+/srv/nfs/compartit *(rw,sync,no_subtree_check)
 ```
 
-![Canvi Linia](/Tasques/NF1.UD4/img/14.png)
+> **Explicació de les opcions:**
+> - `rw`: Permet lectura i escriptura.
+> - `sync`: Força el servidor a esperar que els canvis s'escriguin al disc físic abans de respondre al client (integritat de dades).
+> - `no_subtree_check`: Desactiva la comprovació de subàrbres, millorant el rendiment.
 
-Ara hem de restaurar el server de nfs i de exportacions perque funcioni
+### 2.3. Aplicar canvis i reiniciar el servei
+
+Perquè els canvis tinguin efecte, exportem les noves regles i reiniciem el servei:
 
 ```bash
-sudo exportfs -a 
+sudo exportfs -a
 sudo systemctl restart nfs-kernel-server
 ```
 
-![Restaurar servei nfs](/Tasques/NF1.UD4/img/15.png)
-
-Ara proverem de fer l'exportacio al clinet (primer hem hagut d'instal·lar el sarve nfs-common a el clinet)
-
-Primer crearem el punt de muntatge local
+Per verificar que el servei està funcionant correctament:
 
 ```bash
-sudo mkdir -p /mnt/admin_tools
+sudo systemctl status nfs-kernel-server
 ```
-
-![Creacio muntatge local](/Tasques/NF1.UD4/img/16.png)
-
-Ara muntem la carpeta compratida al servidor desde el client (10.0.2.7 es la ip de l'adaptador 'xarxa NAT' del servidor)
-
-```bash
-sudo mount -t nfs 10.0.2.7:/srv/nfs/admin_tools /mnt/admin_tools
-```
-
-![Muntar carpeta compartida prova 1](/Tasques/NF1.UD4/img/17.png)
-
-I ara hem de fer aixo 
-
-```bash
-sudo touch /mnt/admin_tools/prova1.txt
-```
-
-Pero el que passa es que no ens deixa i aquest es un dels errors mes comuns a l'hora de fer carpetes compartides amb NFS.
-
-![Error prova 1](/Tasques/NF1.UD4/img/18.png)
-
 
 ---
 
-#### Prova 2 solucio
+##  Pas 3: Configuració del Client NFS
 
-D'acord ara començem desde cero.
-
-El Primer es anar a l'ubuntu server i hem de tornar a editar l'arxiu d'exportacions.
+### 3.1. Creació d'usuari i grup (Coherència UID/GID)
 
 ```bash
-sudo nano /etc/exports
+sudo groupadd -g 1100 grup_smx
+sudo useradd -u 1100 -m -g grup_smx usuari_smx -s /bin/bash
 ```
 
-I canviem la linia
+### 3.2. Muntatge manual del recurs
+
+Creem un directori local on "connectarem" la carpeta remota i la muntem.
+
+```bash
+sudo mkdir -p /mnt/compartit
+sudo mount -t nfs servidor_nfs:/srv/nfs/compartit /mnt/compartit
+```
+
+### 3.3. Comprovació de funcionament
+
+Verifiquem que l'usuari creat pot interactuar amb el recurs compartit:
+
+```bash
+su - usuari_smx
+
+cd /mnt/compartit
+
+touch fitxer_prova.txt
+
+ls -l fitxer_prova.txt
+```
+
+*Si el fitxer es crea sense errors de permisos, la configuració és correcta.*
+
+Un cop fetes les proves, sortim de l'usuari (`exit`) i desmuntem la carpeta:
+
+```bash
+sudo umount /mnt/compartit
+```
+
+---
+
+##  Pas 4: Muntatge permanent (`/etc/fstab`)
+
+El muntatge anterior és temporal (es perd en reiniciar). Per fer-lo automàtic en arrencar el sistema, editarem el fitxer `/etc/fstab` del **client**.
+
+```bash
+sudo nano /etc/fstab
+```
+
+Afegim la següent línia al final (substituint `IP_servidor_nfs` per la IP real):
 
 ```text
-/srv/nfs/admin_tools *(rw,sync,no_subtree_check)
+IP_servidor_nfs:/srv/nfs/compartit /mnt/compartit nfs defaults 0 0
 ```
 
-Per
+**Explicació de l'entrada:**
 
-```text 
-/srv/nfs/admin_tools *(rw,sync,no_subtree_check,no_root_squash)
-```
+| Camp | Descripció |
+|------|------------|
+| `IP_servidor_nfs:/srv/nfs/compartit` | Ruta del recurs compartit al servidor |
+| `/mnt/compartit` | Punt de muntatge local al client |
+| `nfs` | Tipus de sistema de fitxers |
+| `defaults` | Opcions de muntatge per defecte |
+| `0` | No es farà verificació del sistema de fitxers (`dump`) |
+| `0` | No es seguirà un ordre específic de muntatge (`fsck`) |
 
-![Edicio arxiu exports prova 2](/Tasques/NF1.UD4/img/19.png)
-
-Ara re-exportem el recurs i actualiazem el servei
+Per provar que l'entrada és correcta sense reiniciar, executem:
 
 ```bash
-sudo exportfs -a 
-sudo systemctl restart nfs-kernel-server
+sudo mount -a
 ```
 
-![re-exportacio de el recurs i actualitzacio del servei](/Tasques/NF1.UD4/img/20.png)
+Si no apareix cap error, el muntatge s'ha configurat correctament.
 
-Ara pasarem a traballa a la maquina client (zorin)
+---
 
-Ara el primer es desmontar la carpeta de la prova 1 amb 
+##  Comandes útils de verificació
 
-```bash
-sudo umount /mnt/admin_tools
-```
+| Comanda | Descripció |
+|---------|------------|
+| `showmount -e IP_servidor` | Mostra els recursos exportats pel servidor |
+| `mount \| grep nfs` | Llista els recursos NFS muntats actualment |
+| `df -h` | Mostra l'espai disponible dels sistemes de fitxers muntats |
+| `cat /etc/exports` | Mostra la configuració d'exportació del servidor |
 
-Ara Montarem la carpeta amb la comanda
-
-```bash
-sudo mount -t nfs IP_DEL_SERVIDOR:/srv/nfs/admin_tools /mnt/admin_tools
-```
-
-![Muntem carpeta prova 2](/Tasques/NF1.UD4/img/21.png)
-
-
-Ara toca crear el fitxer que li direm prova2.txt
-
-
-
-
+---
